@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>POKEDEX</title>
+        <link rel="shortcut icon" type="image/png" href="https://vignette.wikia.nocookie.net/pokemonreloaded/images/4/4c/Pokeball.png/revision/latest?cb=20160823223254&path-prefix=es"/>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -28,7 +29,7 @@
             if(is_numeric($valor)){
                 $reg = $bd->query("UPDATE `pokedex` SET `capturado`= 1 WHERE `numero` = $valor");
             }else{
-                $reg = $bd->query("UPDATE `pokedex` SET `capturado`= 1 WHERE `nombre` = $valor");
+                $reg = $bd->query("UPDATE `pokedex` SET `capturado`= 1 WHERE `nombre` = '$valor'");
             }
         }
         //Comprobamos cuantos registros existen para el contador.
@@ -66,7 +67,8 @@
                 Total de capturados: <span style="color: green"><?=$totalCapturados?></span> |
                 Total no capturados: <span style="color: red"><?=$totalNoCapturados?></span>
             </div>
-            <div class="col col-sm-8">
+            <div class="col col-sm-9">
+                <a class="btn btn-info" href="?">Todos(<?=$totalPokemon?>)<br>1-807</a>
                 <a class="btn btn-info" href="?i=0&f=151">Kanto(151)<br>1-151</a>
                 <a class="btn btn-info" href="?i=151&f=100">Johto(100)<br>152-251</a>
                 <a class="btn btn-info" href="?i=251&f=135">Hoen(135)<br>252-386</a>
