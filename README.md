@@ -12,3 +12,7 @@ La creación de datos sirve para crear un json apartir de los pokemon y sus núm
 Y guardados en la BBDD
 
 También se puede usar directamente la SQL.
+
+Filtros por regiones, añadir pokemon por nombre o nºPokedex
+
+![alt text](img\diseño1.png)
