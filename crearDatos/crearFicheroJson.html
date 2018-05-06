@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Crear archivo JSON - Lista Pokémon</title>
+        <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+        <script>
+            // https://pokeapi.co/api/v2/pokemon/?limit=802
+            $(function(){
+                $.ajax({ // Petición ajax
+                    type: "GET",
+                    dataType: "json",
+                    url: "https://pokeapi.co/api/v2/pokemon/?limit=802" // Hacemos una petición a la APIREST de POKEAPI
+                }).done(function(data){ // Recorremos el data recogiendo cada nombre.
+                    var listaPokemon = [];
+                    var nPokedex = 0;
+                    while(nPokedex < 802){
+                        listaPokemon.push({ //lo añadimos a un array con su nº de Pokedex y nombre
+                            "numero": nPokedex+1,
+                            "nombre": data["results"][nPokedex]["name"]
+                        });
+                        //document.getElementById("pokemon").innerHTML += data["results"][nPokedex]["name"] +" ";
+                        nPokedex++;
+                        //document.getElementById("numero").innerHTML = nPokedex;
+                    }
+                    // Esta lista no tiene los ultraentes los cuales vamos a añadir nosotros.
+                    listaPokemon.push({ // Añadir cualquier pokemon o forma.
+                                        "numero": 803,
+                                        "nombre": "Poipole"
+                                    },{
+                                        "numero": 804,
+                                        "nombre": "Naganadel"
+                                    },{
+                                        "numero": 805,
+                                        "nombre": "Stakataka"
+                                    },{
+                                        "numero": 806,
+                                        "nombre": "Blacephalon"
+                                    },{
+                                        "numero": 807,
+                                        "nombre": "Zeraora"
+                                    });
+                    jsonPokemon = JSON.stringify(listaPokemon); //convertimos el array en json para guardarlo en un fichero.
+                    $("#json").html(jsonPokemon);
+                    //var arrayPokemon = $.parseJSON(jsonPokemon);
+                    $('.boton').html("<a id='descargar' download='data.json' href='data:application/octet-stream," + jsonPokemon + "'>descarga</a>");
+                })
+            });
+            //Exportar a archivo
+
+
+
+            //https://es.stackoverflow.com/questions/15509/c%C3%B3mo-crear-un-archivo-de-texto-con-javascript
+        </script>
+    </head>
+    <body>
+
+        Archivo JSON con la Pokedex: <span class="boton"></span>
+        <div id="json"></div>
+    </body>
+</html>
