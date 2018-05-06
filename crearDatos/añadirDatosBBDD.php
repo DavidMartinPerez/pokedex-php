@@ -19,11 +19,12 @@
 
     }
     $bd = @new mysqli("localhost", "root", "", "pokedex") ;
+    //comprobamos si se conecta a la base de datos
     if($bd->connect_errno) {
         die("Error al conectar con la Base de datos (Posibles datos erroneos)") ;
     }
     $bd-> set_charset("utf8");
-    //comprobamos si se conecta a la base de datos
+
     if($eliminar == 1){
         $bd->query("DELETE FROM pokedex");
     }
