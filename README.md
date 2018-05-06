@@ -15,4 +15,4 @@ También se puede usar directamente la SQL.
 
 Filtros por regiones, añadir pokemon por nombre o nºPokedex
 
-![alt text](img\diseño1.png)
+![Diseño Inicial](/img/diseño1.png)
